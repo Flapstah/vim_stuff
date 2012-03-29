@@ -1,0 +1,15 @@
+*~
+*.swp
+.VimballRecord
+/autoload/
+/bin/
+/colors/
+/compiler/
+/doc/
+/ftdetect/
+/ftplugin/
+/indent/
+/keymap/
+/plugin/
+/syntax/
+
