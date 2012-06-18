@@ -98,6 +98,7 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set noexpandtab
+set tabpagemax=999
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
