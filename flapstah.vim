@@ -54,10 +54,19 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General miscellany
-set textwidth=80
+"set textwidth=80
 set number
-set selection=exclusive
+"set selection=exclusive
 set cindent
+
+if has ("gui_running")
+	" GUI is running or is about to start
+	" Set gvim window size
+	set lines=40
+	set columns=128
+else
+	" This is console Vim so don't bother changing anything
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
