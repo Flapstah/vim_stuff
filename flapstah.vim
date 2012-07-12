@@ -56,7 +56,7 @@ endif
 " General miscellany
 "set textwidth=80
 set number
-"set selection=exclusive
+set selection=exclusive
 set cindent
 
 if has ("gui_running")
