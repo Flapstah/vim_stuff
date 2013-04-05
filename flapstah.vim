@@ -70,6 +70,9 @@ endif
 
 " tab complete will now work how a bash shell works
 set wildmode=longest,list
+
+" increase the size of the history buffer
+set history=200
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
