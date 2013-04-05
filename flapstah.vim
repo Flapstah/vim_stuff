@@ -67,6 +67,9 @@ if has ("gui_running")
 else
 	" This is console Vim so don't bother changing anything
 endif
+
+" tab complete will now work how a bash shell works
+set wildmode=longest,list
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
