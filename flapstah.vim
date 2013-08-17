@@ -212,6 +212,15 @@ command! TabSort :call TabSort()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Since I use CMake and always build out-of-source, I use a custom shell
+" script 'make' to do the build.  Normally I call it from the shell with
+" $ ./make
+" but Vim's :make command wants to call 'make' directly, so I tell Vim to use
+" my shell script instead with the makeprg option
+set makeprg=./make
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complete options (disable preview scratch window)
 "set completeopt = menu,menuone,longest
 " Limit popup menu height
