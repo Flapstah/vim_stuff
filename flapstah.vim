@@ -36,7 +36,6 @@ if !exists("*MyDiff")
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Source the vimrc file after saving it
 if has("autocmd")
@@ -108,7 +107,56 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabs & spaces
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+	echo "@".getcmdline()
+	execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Allow the . formula to be applied over the visual range
+xnoremap . :normal .<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Sensible screen-oriented line editing
+set wrap
+nnoremap j gj
+nnoremap k gk
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabbed windows
+set tabpagemax=999
+map <C-M-F4> :tabclose<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimcasts.org #1 - Show Invisibles
+" http://vimcasts.org/episodes/show-invisibles/
+"
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" Set symbols for tabstops, EOLs and trailing whitespace
+set listchars=tab:»·,eol:¶,trail:¤
+
+"Invisible character colours
+"highlight NonText guifg=#ff01d2
+"highlight SpecialKey guifg=#ff01d2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimcasts.org #2 - Tabs and Spaces
+" http://vimcasts.org/episodes/tabs-and-spaces/
+"
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -141,36 +189,6 @@ function! SummeriseTabs()
 		echohl None
 	endtry
 endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sensible screen-oriented line editing
-set wrap
-nnoremap j gj
-nnoremap k gk
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabbed windows
-set tabpagemax=999
-map <C-M-F4> :tabclose<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visible whitespace
-"
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
-" Set symbols for tabstops and EOLs
-set listchars=tab:»\ ,eol:¶
-
-"Invisible character colours
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a49
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

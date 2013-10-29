@@ -1,0 +1,24 @@
+Visual selection:
+	vip - visually select paragraph
+	:help objects - shows help on text objects
+
+Ex commands:
+	:<line>t. - takes specified line and pastes it below the current line without moving the cursor
+
+Jump list:
+	<C-i> - jumps forward through the jump list
+	<C-o> - jumps back through the jump list
+	`` - switches between last 2 positions in the jump list
+	:jumps - shows jump list 
+
+Spit window:
+	<C-w>v - vertically split the current window
+	<C-w>c - closes the current split
+
+Searching:
+	f - searches on the current line only
+	; - next instance in this line
+	, - previous instance in this line
+
+Command List:
+	q: - shows the command history
