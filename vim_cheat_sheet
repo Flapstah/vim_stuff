@@ -22,3 +22,12 @@ Searching:
 
 Command List:
 	q: - shows the command history
+
+2 lines of attack:
+	Visual operators:
+		v{motion}{command}			e.g. vitu
+			BUT this isn't repeatable with . because it'll only work on the number of chars originally selected
+	Operator pending:
+		g{command}{motion}			e.g. guit
+			IS repeatable with . command
+			
