@@ -31,3 +31,32 @@ Command List:
 		g{command}{motion}			e.g. guit
 			IS repeatable with . command
 			
+Normal Command:
+	:normal <command>	- runs <command> in normal mode
+		This can be used to run a normal command over a visual range by first selecting the visual range, then:
+			:'<,'>normal <command> - (the '<,'> range is automatically inserted indicating the whole visual range)
+		e.g.	vip
+					:'<,'>normal guit
+
+Combining the :normal and :g commands:
+	:%g/\./norm @q - run @q on all lines with a . in them
+
+Matching search expression:
+	:s/fubar/&ed/g - would change 'fubar' to 'fubared'
+
+Search command flags:
+	/lang/e - searches for 'lang' and puts the cursor on the 'g' (see :help search-offset for more)
+	
+Use search to find the correct search pattern and then replace to use it:
+	/<complex search pattern> - repeat until you find the right search pattern
+	:s//<replace text/g				- to repeat the last search using <replace text>
+
+Showing the contents of registers:
+	:reg		- shows all registers
+	:reg w	- shows only register w
+
+Sourcing files:
+	:source <file> - adds the commands/mappings in the file to the current vim session
+		e.g. :source flapstah.vim - adds flapstah.vim to the current session
+	:source % - adds the current buffer to the current vim session
+
