@@ -60,3 +60,25 @@ Sourcing files:
 		e.g. :source flapstah.vim - adds flapstah.vim to the current session
 	:source % - adds the current buffer to the current vim session
 
+Args list:
+	:args - inspect the args list
+	:next - goes to next file (error if already on the last file)
+	:prev - goes to previous file (errror if already on the first file)
+		The fact it errors means you can run macros with a high count over the args list and be sure
+	 	they'll only touch a file once.  Iterating over the buffer list (:bnext, :bprev) will wrap.
+	:first - goes to the first file
+	:last - goes to the last file
+	:args %:h/*.rb - loads all ruby files in the current directory
+				- % = current file
+				- : = full path
+				- h = head of path
+	:argdo - perform command over all arguments in the args list
+
+Macros:
+	@: - special macro that runs the last ex command
+
+Indenting:
+	== - does C/C++ style indenting
+	>{motion} - indents the motion, e.g. >G indents to end of file
+	<{motion} - reduces indentation
+
