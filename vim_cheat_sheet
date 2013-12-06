@@ -82,3 +82,8 @@ Indenting:
 	>{motion} - indents the motion, e.g. >G indents to end of file
 	<{motion} - reduces indentation
 
+Expression register:
+	When in insert mode:
+	<C-r>=  - moves the cursor down to the command line where any vimscript expression can be entered
+	<CR>    - will insert the expression into the text
+

@@ -37,15 +37,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-  autocmd bufwritepost flapstah.vim source $MYVIMRC
-endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically cd into the directory that the file is in
 "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -156,7 +147,6 @@ set listchars=tab:»·,eol:¶,trail:¤
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimcasts.org #2 - Tabs and Spaces
 " http://vimcasts.org/episodes/tabs-and-spaces/
-"
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -189,6 +179,26 @@ function! SummeriseTabs()
 		echohl None
 	endtry
 endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General autocmd configuration
+if has("autocmd")
+	" Source the vimrc file after saving it
+	autocmd bufwritepost .vimrc source $MYVIMRC
+	autocmd bufwritepost flapstah.vim source $MYVIMRC
+
+	" Vimcasts.org #3 - Show Invisibles
+	" http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
+	" Enable file type detection
+	filetype on
+
+	" Syntax of these languages is fussy over tabs Vs spaces
+	autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+	autocmd FileType py setlocal ts=4 sts=4 sw=4 expandtab
+	autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
