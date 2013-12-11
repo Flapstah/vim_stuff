@@ -36,6 +36,7 @@ if !exists("*MyDiff")
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatically cd into the directory that the file is in
 "autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -98,22 +99,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-function! ExecuteMacroOverVisualRange()
-	echo "@".getcmdline()
-	execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Allow the . formula to be applied over the visual range
-xnoremap . :normal .<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sensible screen-oriented line editing
 set wrap
 nnoremap j gj
@@ -132,7 +117,8 @@ map <C-M-F4> :tabclose<CR>
 " Vimcasts.org #1 - Show Invisibles
 " http://vimcasts.org/episodes/show-invisibles/
 "
-" Shortcut to rapidly toggle `set list`
+" Shortcut to rapidly toggle `set list` - remember that the <leader> is
+" usually \ (unless you have remapped it)
 nmap <leader>l :set list!<CR>
 
 " Set symbols for tabstops, EOLs and trailing whitespace
@@ -189,7 +175,7 @@ if has("autocmd")
 	autocmd bufwritepost .vimrc source $MYVIMRC
 	autocmd bufwritepost flapstah.vim source $MYVIMRC
 
-	" Vimcasts.org #3 - Show Invisibles
+	" Vimcasts.org #3 - Whitespace preferences and filetypes
 	" http://vimcasts.org/episodes/whitespace-preferences-and-filetypes/
 	" Enable file type detection
 	filetype on
@@ -203,10 +189,46 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vimcasts.org #4 -	Tidying whitespace
+" http://vimcasts.org/episodes/tidying-whitespace/
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Execute a macro over a visual range
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+	echo "@".getcmdline()
+	execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Allow the . formula to be applied over the visual range
+xnoremap . :normal .<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fix up the tag function to show the full list instead of the first match
 map <C-]> :tjump <C-R>=expand("<cword>")<CR><CR>
 " fix all uses of ta->tj as the new ta is fixed and want it to call tj instead
-cabbrev ta tj 
+cabbrev ta tj
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
