@@ -50,6 +50,27 @@ set number
 set selection=exclusive
 set cindent
 
+" Searching
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch
+
+" Mappings to make search stepping centre around the line containing the find
+map N Nzz
+map n nzz
+
+" Sensible screen-oriented line editing
+set wrap
+nnoremap j gj
+nnoremap k gk
+
+" Tabbed windows
+set tabpagemax=999
+map <C-M-F4> :tabclose<CR>
+
+" Set default window size (if appropriate)
 if has ("gui_running")
 	" GUI is running or is about to start
 	" Set gvim window size
@@ -64,20 +85,29 @@ set wildmode=longest,list
 
 " increase the size of the history buffer
 set history=200
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Execute a macro over a visual range
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Searching
-set ignorecase
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
+function! ExecuteMacroOverVisualRange()
+	echo "@".getcmdline()
+	execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
-" Mappings to make search stepping centre around the line containing the find
-map N Nzz
-map n nzz
+" Allow the . formula to be applied over the visual range
+xnoremap . :normal .<CR>
+
+" fix up the tag function to show the full list instead of the first match
+map <C-]> :tjump <C-R>=expand("<cword>")<CR><CR>
+" fix all uses of ta->tj as the new ta is fixed and want it to call tj instead
+cabbrev ta tj
+
+" Since I use CMake and always build out-of-source, I use a custom shell
+" script 'make' to do the build.  Normally I call it from the shell with
+" $ ./make
+" but Vim's :make command wants to call 'make' directly, so I tell Vim to use
+" my shell script instead with the makeprg option
+set makeprg=./make
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -95,21 +125,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Sensible screen-oriented line editing
-set wrap
-nnoremap j gj
-nnoremap k gk
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabbed windows
-set tabpagemax=999
-map <C-M-F4> :tabclose<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -208,36 +223,82 @@ nmap _= :call Preserve("normal gg=G")<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Execute a macro over a visual range
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-function! ExecuteMacroOverVisualRange()
-	echo "@".getcmdline()
-	execute ":'<,'>normal @".nr2char(getchar())
-endfunction
+" Vimcasts.org #5 -	Indentation commands
+" http://vimcasts.org/episodes/indentation-commands/
+"
+" command		action
+" >					shift right
+" <					shift left
+" =					auto indent
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Allow the . formula to be applied over the visual range
-xnoremap . :normal .<CR>
+" Vimcasts.org #6 -	Working with buffers
+" http://vimcasts.org/episodes/working-with-buffers/ 
+"
+" command		action
+" :ls				show the buffer list
+" :bn				open the next buffer in the current window (cycles from the end of
+"						the list to the beginning)
+"	:bp				open the previous buffer in the current window (cycles from the
+"						start of the list to the end)
+"	CTRL-^		switch to the alternate file
+set hidden
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fix up the tag function to show the full list instead of the first match
-map <C-]> :tjump <C-R>=expand("<cword>")<CR><CR>
-" fix all uses of ta->tj as the new ta is fixed and want it to call tj instead
-cabbrev ta tj
+" Vimcasts.org #7 -	Working with windows
+" http://vimcasts.org/episodes/working-with-windows/
+"
+" Opening split windows:
+" command								action
+"	CTRL-w s							split the current window horizontally, loading the same
+"												file in the new window
+"	CTRL-w v							split the current window vertically, loading the same
+"												file in the new window
+" :sp[lit] <filename>		split the current window horizontally, loading
+"												<filename> in the new window
+" :vsp[lit] <filename>	split the current window vertically, loading <filename>
+"												in the new window
+"
+" Closing split windows:
+" command								action
+" :q[uit]								close the currently active window
+"	:on[ly]								close all windows except the currently active window
+"
+"	Changing focus between windows:
+" command								action
+" CTRL-w w							cycle between the open windows
+" CTRL-w h							focus the window to the left
+" CTRL-w j							focus the window to the bottom
+" CTRL-w k							focus the window to the top
+" CTRL-w l							focus the window to the right
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+"
+" Resizing windows:
+" command								action
+"	CTRL-w +							increase height of current window by 1 line
+"	CTRL-w -							decrease height of current window by 1 line
+"	CTRL-w _							maximise height of current window
+"	CTRL-w |							maximise width of current window
+" CTRL-w =							equalise the size of the windows
+"
+"	Moving windows:
+" command								action
+"	CTRL-w r							rotate all windows
+"	CTRL-w R							rotate all windows backwards
+"	CTRL-w x							exchange current window with its neighbour
+"	CTRL-w H							move current window to far left
+"	CTRL-w J							move current window to bottom
+"	CTRL-w K							move current window to top
+"	CTRL-w L							move current window to far right
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map ALT-O to open the corresponding .cpp/.h file in a new tab on the right
-if exists("FSRight")
-	map <M-`> :tabnew
-endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Adds tab sorting by tab name (I find the default tab sort unintuitive)
@@ -261,14 +322,6 @@ endfun
 command! TabSort :call TabSort()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Since I use CMake and always build out-of-source, I use a custom shell
-" script 'make' to do the build.  Normally I call it from the shell with
-" $ ./make
-" but Vim's :make command wants to call 'make' directly, so I tell Vim to use
-" my shell script instead with the makeprg option
-set makeprg=./make
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complete options (disable preview scratch window)
