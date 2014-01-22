@@ -670,8 +670,12 @@ setlocal tags^=$HOME/.vim/vimoutliner/vo_tags.tag
 " Added an indication of current syntax as per Dillon Jones' request
 let b:current_syntax = "outliner"
 
+" Directory where VO is located now
+let vo_dir = expand("<sfile>:p:h:h")
+
 " Load rc file, only the first found.
-let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
+"let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
+let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n") + split(globpath(vo_dir, 'vimoutlinerrc'), "\n")
 if len(rcs) > 0
 	exec 'source '.rcs[0]
 else
@@ -680,7 +684,8 @@ endif
 " Load modules
 if exists('g:vo_modules_load')
 	for vo_module in split(g:vo_modules_load, '\s*:\s*')
-		exec "runtime vimoutliner/plugin/vo_" . vo_module . ".vim"
+"		exec "runtime vimoutliner/plugin/vo_" . vo_module . ".vim"
+		exec "runtime! vimoutliner/plugin/vo_" . vo_module . ".vim"
 	endfor
 unlet! vo_module
 endif
