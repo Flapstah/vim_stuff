@@ -230,6 +230,10 @@ nmap _= :call Preserve("normal gg=G")<CR>
 " >					shift right
 " <					shift left
 " =					auto indent
+"
+" Keep visual block selected when altering indentation levels
+vmap > >gv
+vmap < <gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
