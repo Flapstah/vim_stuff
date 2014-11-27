@@ -248,6 +248,12 @@ vmap < <gv
 "	:bp				open the previous buffer in the current window (cycles from the
 "						start of the list to the end)
 "	CTRL-^		switch to the alternate file
+"
+"	A buffer is marked as "hidden" if it has unsaved changes, and it is not
+"	currently loaded in a window.  If you try and quit Vim while there are
+"	hidden buffers, you will raise an error: E162: No write since last change
+"	for buffer "a.txt".  By default, Vim makes it difficult to create hidden
+"	buffers.  To make Vim more liberal about hidden buffers, use the following:
 set hidden
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
