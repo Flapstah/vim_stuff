@@ -218,7 +218,9 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
+" _$ will remove all trailing whitespace in the entire file
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+" _= will auto indent the entire file
 nmap _= :call Preserve("normal gg=G")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
