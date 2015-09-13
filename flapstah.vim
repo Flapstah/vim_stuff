@@ -1,4 +1,5 @@
 set nocompatible
+set backspace=indent,eol,start
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Activate pathogen, then activate all the bundles
