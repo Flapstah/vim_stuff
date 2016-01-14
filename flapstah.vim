@@ -232,7 +232,7 @@ function! UnifyNewlines()
 	:setlocal ff=unix
 	:write
 endfunction
-nmap _n :call Preserve("call UnifyNewlines()")<CR>
+nmap _% :call Preserve("call UnifyNewlines()")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
