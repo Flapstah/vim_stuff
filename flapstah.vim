@@ -224,6 +224,16 @@ nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 " _= will auto indent the entire file
 nmap _= :call Preserve("normal gg=G")<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Additional stuff to unify newlines to unix format
+"nmap _n :call Preserve("update | e ++ff=dos | setlocal ff=unix | w")<CR>
+function! UnifyNewlines()
+	:update
+	:edit ++ff=dos
+	:setlocal ff=unix
+	:write
+endfunction
+nmap _n :call Preserve("call UnifyNewlines()")<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,7 +253,7 @@ vmap < <gv
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vimcasts.org #6 -	Working with buffers
-" http://vimcasts.org/episodes/working-with-buffers/ 
+" http://vimcasts.org/episodes/working-with-buffers/
 "
 " command		action
 " :ls				show the buffer list
