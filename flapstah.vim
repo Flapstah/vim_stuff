@@ -87,6 +87,9 @@ set wildmode=longest,list
 " increase the size of the history buffer
 set history=200
 
+" possible file formats in expected order of frequency
+set fileformats=unix,dos,mac
+
 " Execute a macro over a visual range
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
