@@ -351,6 +351,22 @@ command! TabSort :call TabSort()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Format the text as if it were JSON
+function! FormatJSON() range
+	:execute a:firstline . "," . a:lastline . 'y'
+	let selection = @@
+	let selection = substitute(selection, ",", ",\n", "ge")
+	let selection = substitute(selection, "{", "{\n", "ge")
+	let selection = substitute(selection, "}", "\n}", "ge")
+	let selection = substitute(selection, "\[", "\[\n", "ge")
+	let selection = substitute(selection, "\]", "\n\]", "ge")
+	let @@ = selection
+	normal! V""pv%=
+endfunction
+command! -range FormatJSON :call FormatJSON()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " Complete options (disable preview scratch window)
 "set completeopt = menu,menuone,longest
 " Limit popup menu height
