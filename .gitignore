@@ -1,6 +1,12 @@
 *~
 *.swp
 .VimballRecord
+*.bat
+*.exe
+*.dll
+*.vim
+*.txt
+GvimExt*/
 /autoload/
 /bin/
 /colors/
@@ -10,6 +16,11 @@
 /ftplugin/
 /indent/
 /keymap/
+/lang/
+/macros/
+/pack/
 /plugin/
+/spell/
 /syntax/
-
+/tools/
+/tutor/
