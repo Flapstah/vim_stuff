@@ -365,9 +365,9 @@ function! FormatJSON() range
 endfunction
 command! -range FormatJSON :call FormatJSON()
 
-"vnoremap fj :call FormatJSON()<CR>
+nmap =j :call FormatJSON()<CR>
 "N.B. the following only works with single JSON objects
-vnoremap fj :!python -m json.tool<CR>
+"nmap =j :!python -m json.tool<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
