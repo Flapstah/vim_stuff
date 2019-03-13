@@ -7,6 +7,10 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Add packages (vim8 onwards)
+packadd! matchit
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !exists("*MyDiff")
@@ -353,21 +357,23 @@ command! TabSort :call TabSort()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Format the text as if it were JSON
 function! FormatJSON() range
-	:execute a:firstline . "," . a:lastline . 'y'
-	let selection = @@
-	let selection = substitute(selection, ",", ",\n", "ge")
-	let selection = substitute(selection, "{", "{\n", "ge")
-	let selection = substitute(selection, "}", "\n}", "ge")
-	let selection = substitute(selection, "\[", "\[\n", "ge")
-	let selection = substitute(selection, "\]", "\n\]", "ge")
-	let @@ = selection
-	normal! V""pv%=
+"	:execute a:firstline . "," . a:lastline . 'y'
+"	let selection = @@
+"	let selection = substitute(selection, ",", ",\n", "ge")
+"	let selection = substitute(selection, "{", "{\n", "ge")
+"	let selection = substitute(selection, "}", "\n}", "ge")
+"	let selection = substitute(selection, "\[", "\[\n", "ge")
+"	let selection = substitute(selection, "\]", "\n\]", "ge")
+"	let @@ = selection
+"	normal! V""pv%=
+
+	:execute a:firstline . "," . a:lastline . "!python -m json.tool"
 endfunction
 command! -range FormatJSON :call FormatJSON()
 
-nmap =j :call FormatJSON()<CR>
 "N.B. the following only works with single JSON objects
-"nmap =j :!python -m json.tool<CR>
+nmap =j :call FormatJSON()<CR>
+vnoremap =j :call FormatJSON()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
