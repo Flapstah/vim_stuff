@@ -2,6 +2,14 @@ set nocompatible
 set backspace=indent,eol,start
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" On Windows, provided Python and bash are in the PATH environment, this
+" allows FormatJSON() below to work, when gvim is invoked from bash directly
+if has('win32')
+	set shell=bash
+endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Activate pathogen, then activate all the bundles
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
