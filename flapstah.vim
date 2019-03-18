@@ -373,7 +373,7 @@ command! -range FormatJSON :call FormatJSON()
 
 "N.B. the following only works with single JSON objects
 nmap =j :call FormatJSON()<CR>
-vnoremap =j :call FormatJSON()<CR>
+vmap =j :call FormatJSON()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
