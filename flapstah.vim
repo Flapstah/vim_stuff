@@ -402,6 +402,19 @@ vnoremap <silent> # :<C-U>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EditVimRC
+" Opens user's vimrc and my flapstah.vim file
+"
+command! -nargs=* EditVimRC call EditVimRC()
+function! EditVimRC()
+	":tabnew $MYVIMRC
+	:vsplit $VIMRUNTIME/flapstah.vim
+endfunction
+nnoremap <leader>ev :call EditVimRC()<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Complete options (disable preview scratch window)
 "set completeopt = menu,menuone,longest
 " Limit popup menu height
