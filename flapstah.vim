@@ -414,7 +414,7 @@ nnoremap <silent> <space> :nohlsearch<space><esc>
 command! -nargs=* EditVimRC call EditVimRC()
 function! EditVimRC()
 	":tabnew $MYVIMRC
-	:vsplit $VIMRUNTIME/flapstah.vim
+	:split $VIMRUNTIME/flapstah.vim
 endfunction
 nnoremap <leader>ev :call EditVimRC()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
