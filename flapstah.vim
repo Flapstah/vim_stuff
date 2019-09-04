@@ -302,6 +302,10 @@ set hidden
 " :vsp[lit] <filename>	split the current window vertically, loading <filename>
 "												in the new window
 "
+" set default for new view to be below or to the right of the current window
+set splitbelow
+set splitright
+"
 " Closing split windows:
 " command								action
 " :q[uit]								close the currently active window
