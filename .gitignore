@@ -4,6 +4,7 @@
 *.bat
 *.exe
 *.dll
+*.netrwhist
 *.vim
 *.txt
 GvimExt*/
